@@ -21,7 +21,7 @@ python3 -m pip install -r requirements.txt
 ```
 
 ## Quick Demonstration
-We prepared [a jupyter notebook](https://github.com/OFRIN/Fast_Neural_Style_Transfer/demo.ipynb).
+I prepared [a jupyter notebook](https://github.com/OFRIN/Fast_Neural_Style_Transfer/demo.ipynb).
 
 ## Usage
 Train a stylizing model.
