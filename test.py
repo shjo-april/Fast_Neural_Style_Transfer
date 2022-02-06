@@ -13,6 +13,7 @@ from tools.general import io_utils
 
 parser = io_utils.Parser()
 parser.add('image_path', './samples/SSBO_1.jpg', str)
+parser.add('tag', 'Transformer@wave', str)
 args = parser.get_args()
 
 # preprocessing
@@ -31,29 +32,30 @@ model = networks.Transformer(in_channels=3)
 model.eval()
 model.cuda()
 
-for tag in [
-        'Transformer@udnie',
-        'Transformer@ben_giles',
-        'Transformer@edtaonisl',
-        'Transformer@vc_monariza',
-        'Transformer@vg_starry_night',
-        'Transformer@wave',
-    ]:
-    # load a weight
-    model.load_state_dict(torch.load(f'./experiments/models/{tag}/ep=2.pth'))
+# for tag in [
+#         'Transformer@udnie',
+#         'Transformer@ben_giles',
+#         'Transformer@edtaonisl',
+#         'Transformer@vc_monariza',
+#         'Transformer@vg_starry_night',
+#         'Transformer@wave',
+#     ]:
 
-    # inference
-    stylized_image = model(image)
+# load a weight
+model.load_state_dict(torch.load(f'./experiments/models/{args.tag}/ep=2.pth'))
 
-    # postprocessing
-    stylized_image = stylized_image.cpu().detach().numpy()
-    stylized_image = stylized_image[0].transpose((1, 2, 0))
+# inference
+stylized_image = model(image)
 
-    stylized_image = np.clip(stylized_image, 0, 255).astype(np.uint8)
-    stylized_image = cv2.cvtColor(stylized_image, cv2.COLOR_RGB2BGR)
+# postprocessing
+stylized_image = stylized_image.cpu().detach().numpy()
+stylized_image = stylized_image[0].transpose((1, 2, 0))
 
-    # visualize
-    cv2.imshow('Demo', stylized_image)
-    cv2.waitKey(0)
+stylized_image = np.clip(stylized_image, 0, 255).astype(np.uint8)
+stylized_image = cv2.cvtColor(stylized_image, cv2.COLOR_RGB2BGR)
 
-    cv2.imwrite(f'./results/{tag}.jpg', stylized_image)
+# visualize
+cv2.imshow('Demo', stylized_image)
+cv2.waitKey(0)
+
+cv2.imwrite(f'./results/{args.tag}.jpg', stylized_image)

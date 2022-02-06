@@ -31,6 +31,18 @@ python3 train.py \
 --style_path ./data/ben_giles.jpg \
 --tag Transformer@ben_giles --max_epochs 10
 ```
+* `--root_dir` : path to a directory including all the training images. I used COCO 2014 training images [80K/13GB] [(download)](https://cocodataset.org/#download).
+* `--style_path` : path to a style image.
+* `--tag` : name to be used for saving a weight file.
+
+Stylize an image through the trained weight.
+```bash
+python3 test.py \
+--image_path ./samples/SSBO_1.jpg \
+--tag Transformer@ben_giles
+```
+* `--image_path` : path to a content image you want to stylize.
+* `--tag` : name to be used for stylizing an image.
 
 Convert pth file to pt file for an inference without a graphic card.
 ```bash
