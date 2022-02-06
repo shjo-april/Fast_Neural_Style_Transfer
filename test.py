@@ -32,13 +32,15 @@ model.eval()
 model.cuda()
 
 for tag in [
+        'Transformer@udnie',
+        'Transformer@ben_giles',
         'Transformer@edtaonisl',
         'Transformer@vc_monariza',
         'Transformer@vg_starry_night',
         'Transformer@wave',
     ]:
     # load a weight
-    model.load_state_dict(torch.load(f'./experiments/models/{tag}/ep=1.pth'))
+    model.load_state_dict(torch.load(f'./experiments/models/{tag}/ep=2.pth'))
 
     # inference
     stylized_image = model(image)
@@ -53,3 +55,5 @@ for tag in [
     # visualize
     cv2.imshow('Demo', stylized_image)
     cv2.waitKey(0)
+
+    cv2.imwrite(f'./results/{tag}.jpg', stylized_image)

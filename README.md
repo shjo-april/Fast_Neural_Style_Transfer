@@ -2,6 +2,9 @@
 
 This repository contains a pytorch implementation of an algorithm for artistic style transfer. The algorithm aims mixing the content of an image with the style of another image. The model uses the method decribed in [Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155) along with [Instance Normalization](https://arxiv.org/pdf/1607.08022.pdf). I already included the trained models for a quick demonstration.
 
+## Results
+![cat](./results/220206_Style_Transfer.png)
+
 ## Requirements
 Setting up for this project involves installing dependencies and preparing datasets. The code is tested on Ubuntu 20.04 with NVIDIA GPUs and CUDA installed. 
 
