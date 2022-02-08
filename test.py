@@ -12,7 +12,7 @@ from core import networks
 from tools.general import io_utils
 
 parser = io_utils.Parser()
-parser.add('image_path', './samples/SSBO_1.jpg', str)
+parser.add('image_path', './samples/SSAL_2.jpg', str)
 parser.add('tag', 'Transformer@wave', str)
 args = parser.get_args()
 
@@ -24,13 +24,16 @@ transform = transforms.Compose([
 
 image = Image.open(args.image_path).convert('RGB')
 image = transform(image)
-image = image.unsqueeze(0).cuda()
+image = image.unsqueeze(0)
 
 # define a model
 model = networks.Transformer(in_channels=3)
 
 model.eval()
-model.cuda()
+
+if torch.cuda.is_available():
+    model.cuda()
+    image = image.cuda()
 
 # for tag in [
 #         'Transformer@udnie',

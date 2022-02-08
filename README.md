@@ -4,6 +4,7 @@ This repository contains a pytorch implementation of an algorithm for artistic s
 
 ## Results
 ![cat](./results/220206_Style_Transfer.png)
+![other_styles](./results/220209_Style_Transfer-some-examples.png)
 
 ## Requirements
 Setting up for this project involves installing dependencies and preparing datasets. The code is tested on Ubuntu 20.04 with NVIDIA GPUs and CUDA installed. 
